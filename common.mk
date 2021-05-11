@@ -12,12 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Common path
+COMMON_PATH := device/sony/common
+
+# Everything prior to kernel 4.19 uses the sm8150 display HAL
+ifneq ($(filter 4.14, $(SOMC_KERNEL_VERSION)),)
+display_platform := sm8150
+else
+display_platform := sm8250
+endif
+
 # Enable building packages from device namspaces.
 # Might be temporary! See:
 # https://android.googlesource.com/platform/build/soong/+/master/README.md#name-resolution
 PRODUCT_SOONG_NAMESPACES += \
     $(PLATFORM_COMMON_PATH) \
-    vendor/qcom/opensource/core-utils
+    vendor/qcom/opensource/core-utils \
+    vendor/qcom/opensource/display/$(display_platform) \
+    vendor/qcom/opensource/display-commonsys-intf/$(display_platform)
 
 # Common path
 COMMON_PATH := device/sony/common
