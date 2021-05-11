@@ -14,23 +14,12 @@ PRODUCT_PACKAGES += \
 endif
 
 # Graphics allocator/mapper
-ifeq ($(TARGET_HARDWARE_GRAPHICS_V3),true)
-
 PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@3.0-impl-qti-display
 
 # android.hardware.graphics.allocator@3.0::IAllocator:
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.allocator-service
-
-else
-
-PRODUCT_PACKAGES += \
-    android.hardware.graphics.allocator@2.0-impl:64 \
-    android.hardware.graphics.allocator@2.0-service \
-    android.hardware.graphics.mapper@2.0-impl
-
-endif
 
 # Memtrack
 PRODUCT_PACKAGES += \
